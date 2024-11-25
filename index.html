@@ -52,11 +52,12 @@
       <div class="container is-max-desktop">
         <div class="columns is-centered">
           <div class="column has-text-centered">
-            <h1 class="title is-1 publication-title">Academic Project Page</h1>
+            <h1 class="title is-1 publication-title">PURE: Preference-based Unlearning in
+              Text-to-Image Diffusion Models</h1>
             <div class="is-size-5 publication-authors">
               <!-- Paper authors -->
               <span class="author-block">
-                <a href="FIRST AUTHOR PERSONAL LINK" target="_blank">First Author</a><sup>*</sup>,</span>
+                <a href="FIRST AUTHOR PERSONAL LINK" target="_blank">Avinash Reddy*</a><sup>*</sup>,</span>
                 <span class="author-block">
                   <a href="SECOND AUTHOR PERSONAL LINK" target="_blank">Second Author</a><sup>*</sup>,</span>
                   <span class="author-block">
@@ -127,13 +128,16 @@
 <section class="hero teaser">
   <div class="container is-max-desktop">
     <div class="hero-body">
-      <video poster="" id="tree" autoplay controls muted loop height="100%">
-        <!-- Your video here -->
-        <source src="static/videos/banner_video.mp4"
-        type="video/mp4">
-      </video>
+      <img src="static/images/main-figure.png" alt="PURE Unlearning Approach"/>
+      
+
       <h2 class="subtitle has-text-centered">
-        Aliquam vitae elit ullamcorper tellus egestas pellentesque. Ut lacus tellus, maximus vel lectus at, placerat pretium mi. Maecenas dignissim tincidunt vestibulum. Sed consequat hendrerit nisl ut maximus. 
+        This figure contains a comparison of PURE approach with other baselines.
+      The approaches are provided two prompts: (i) a forget class prompt: an image of a tench, and (ii) an NSFW
+      prompt: **** woman looks out of the window. For (i), as seen in the figure, while other baseline generate a
+      random concept image, PURE efficiently unlearns the forget class image. Further, for (ii), while the baselines
+      generate unsafe (NSFW) image on the NSFW unlearning task, PURE is able to effectively forget the NSFW
+      image concept and generate a safe alternative image for unsafe prompts.
       </h2>
     </div>
   </div>
@@ -148,7 +152,21 @@
         <h2 class="title is-3">Abstract</h2>
         <div class="content has-text-justified">
           <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin ullamcorper tellus sed ante aliquam tempus. Etiam porttitor urna feugiat nibh elementum, et tempor dolor mattis. Donec accumsan enim augue, a vulputate nisi sodales sit amet. Proin bibendum ex eget mauris cursus euismod nec et nibh. Maecenas ac gravida ante, nec cursus dui. Vivamus purus nibh, placerat ac purus eget, sagittis vestibulum metus. Sed vestibulum bibendum lectus gravida commodo. Pellentesque auctor leo vitae sagittis suscipit.
+            Text-to-image diffusion models often learn to generate sensitive, unsafe, or private data,
+            especially since they are trained on harmful or explicit content, potentially retaining such
+            information during the pre-training stage. Unlearning in diffusion models aims to prevent
+            undesirable data generation (forget quality) while preserving performance on retain dataset
+            (utility). However, current unlearning approaches either fail to remove the forget data effectively or
+            suffer from training instability due to catastrophic collapse, particularly in gradient ascent-based
+            approaches. Moreover, prior approaches often perform poorly on the retain dataset, which
+            deteriorates model utility and limits their practical applicability. In this work, we introduce
+            PURE, a preference-based approach for unlearning in diffusion models. PURE effectively forgets
+            specific classes and concepts in image generation tasks while preserving model utility. Through
+            extensive evaluations, we demonstrate that PURE achieves nearly 100% unlearning accuracy on
+            image generation tasks and nearly 53% decrease in NSFW (not safe for work) image generation
+            while maintaining model utility, outperforming the state-of-the-art baselines such as SalUn,
+            Erased Stable Diffusion, and Forget-Me-Not on forgetting the Imagenette classes and preventing
+            harmful (NSFW) image generation.
           </p>
         </div>
       </div>
@@ -165,32 +183,33 @@
       <div id="results-carousel" class="carousel results-carousel">
        <div class="item">
         <!-- Your image here -->
-        <img src="static/images/carousel1.jpg" alt="MY ALT TEXT"/>
+        <img src="static/images/imagenette.png" alt="Pure on Class-Wise Forgetting Experiment"/>
         <h2 class="subtitle has-text-centered">
-          First image description.
+          <em>  Qualitative Comparison on the class-forgetting task. </em>In this figure, we compare PURE
+              with SD1.5 and SalUn baseline on two class forgetting examples (where the forget class is (i) tench, and (ii)
+              chainsaw). We qualitatively analyze the forget quality of each approach on one class and also compare the
+              performance on other classes. Notably, SalUn replaces the forget class with a random class from the retain
+              dataset. As is clearly seen, PURE achieves nearly 100% unlearning accuracy for the corresponding forget
+              classes and generates qualitatively competitive images as compared to other baselines, while maintaining
+                model utility on other classes
         </h2>
       </div>
       <div class="item">
         <!-- Your image here -->
-        <img src="static/images/carousel2.jpg" alt="MY ALT TEXT"/>
+        <img src="static/images/nsfwimages.png" alt="Pure on NSFW Concept Forgetting"/>
         <h2 class="subtitle has-text-centered">
-          Second image description.
+         <em  >Qualitative comparison on the NSFW-concept-forgetting task.</em>  This figure shows the
+          qualitative results on the NSFW-concept-forgetting experiment. We compare our method against two
+          baselines: the base SD 1.5 model and the SalUN NSFW-unlearned model. We show the image generation
+          results for 10 prompts (P1 - P10): P1 - P5 are taken from the I2P benchmark for NSFW content, and
+          P6 - P10 are benign prompts generated using ChatGPT. SalUn replaces NSFW concepts with a concept
+          generated from “A person wearing clothes", which causes unintended person depictions in benign prompt
+          image generations. In contrast, while our method is able to accurately generate non-NSFW images, leads
+          to more favorable responses on the benign prompts, closely matching the outputs of base SD 1.5. Prompts
+          P1-P10 are detailed in supplementary materia
         </h2>
       </div>
-      <div class="item">
-        <!-- Your image here -->
-        <img src="static/images/carousel3.jpg" alt="MY ALT TEXT"/>
-        <h2 class="subtitle has-text-centered">
-         Third image description.
-       </h2>
-     </div>
-     <div class="item">
-      <!-- Your image here -->
-      <img src="static/images/carousel4.jpg" alt="MY ALT TEXT"/>
-      <h2 class="subtitle has-text-centered">
-        Fourth image description.
-      </h2>
-    </div>
+      
   </div>
 </div>
 </div>
@@ -200,78 +219,11 @@
 
 
 
-<!-- Youtube video -->
-<section class="hero is-small is-light">
-  <div class="hero-body">
-    <div class="container">
-      <!-- Paper video. -->
-      <h2 class="title is-3">Video Presentation</h2>
-      <div class="columns is-centered has-text-centered">
-        <div class="column is-four-fifths">
-          
-          <div class="publication-video">
-            <!-- Youtube embed code here -->
-            <iframe src="https://www.youtube.com/embed/JkaxUblCGz0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-<!-- End youtube video -->
-
-
-<!-- Video carousel -->
-<section class="hero is-small">
-  <div class="hero-body">
-    <div class="container">
-      <h2 class="title is-3">Another Carousel</h2>
-      <div id="results-carousel" class="carousel results-carousel">
-        <div class="item item-video1">
-          <video poster="" id="video1" autoplay controls muted loop height="100%">
-            <!-- Your video file here -->
-            <source src="static/videos/carousel1.mp4"
-            type="video/mp4">
-          </video>
-        </div>
-        <div class="item item-video2">
-          <video poster="" id="video2" autoplay controls muted loop height="100%">
-            <!-- Your video file here -->
-            <source src="static/videos/carousel2.mp4"
-            type="video/mp4">
-          </video>
-        </div>
-        <div class="item item-video3">
-          <video poster="" id="video3" autoplay controls muted loop height="100%">\
-            <!-- Your video file here -->
-            <source src="static/videos/carousel3.mp4"
-            type="video/mp4">
-          </video>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-<!-- End video carousel -->
 
 
 
 
 
-
-<!-- Paper poster -->
-<section class="hero is-small is-light">
-  <div class="hero-body">
-    <div class="container">
-      <h2 class="title">Poster</h2>
-
-      <iframe  src="static/pdfs/sample.pdf" width="100%" height="550">
-          </iframe>
-        
-      </div>
-    </div>
-  </section>
-<!--End paper poster -->
 
 
 <!--BibTex citation -->
